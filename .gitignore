@@ -1,0 +1,45 @@
+# Laravel & PHP
+/vendor
+/node_modules
+/public/storage
+/storage/*.key
+/storage/pail
+/bootstrap/cache/*.php
+
+# Environment files
+.env
+.env.*
+auth.json
+
+# Logs & cache
+*.log
+phpunit.xml
+.phpunit.result.cache
+/.phpunit.cache
+
+# IDEs & editors
+/.idea
+/.vscode
+/.fleet
+/.zed
+.phpactor.json
+
+# Laravel Nova
+/.nova
+
+# Frontend build
+/public/build
+/public/hot
+/public/mix-manifest.json
+/public/css/*.map
+/public/js/*.map
+
+# OS-generated
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Homestead & Sail
+Homestead.json
+Homestead.yaml
+docker-compose.override.yml
