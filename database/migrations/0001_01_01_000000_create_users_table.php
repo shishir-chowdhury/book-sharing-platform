@@ -17,9 +17,6 @@ return new class extends Migration {
             $table->double('latitude', 10, 7)->nullable();
             $table->double('longitude', 10, 7)->nullable();
 
-            $table->point('location')->nullable();
-            $table->spatialIndex('location');
-
             $table->boolean('is_admin')->default(false);
             $table->rememberToken();
             $table->timestamps();
