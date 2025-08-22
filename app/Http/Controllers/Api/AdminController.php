@@ -30,8 +30,24 @@ class AdminController extends Controller
 
     public function deleteBook($id)
     {
+        try {
+            $user = \Tymon\JWTAuth\Facades\JWTAuth::parseToken()->authenticate();
+        } catch (\Tymon\JWTAuth\Exceptions\TokenExpiredException $e) {
+            return response()->json(['message' => 'Token expired'], 401);
+        } catch (\Tymon\JWTAuth\Exceptions\TokenInvalidException $e) {
+            return response()->json(['message' => 'Token invalid'], 401);
+        } catch (\Tymon\JWTAuth\Exceptions\JWTException $e) {
+            return response()->json(['message' => 'Token not provided'], 401);
+        }
+
+        if (! $user->is_admin) {
+            return response()->json(['message' => 'Unauthorized. Only admins can delete books.'], 403);
+        }
+
         $book = Book::findOrFail($id);
         $book->delete();
+
         return response()->json(['message' => 'Book deleted successfully']);
     }
+
 }
