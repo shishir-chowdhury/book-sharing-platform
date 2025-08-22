@@ -10,7 +10,7 @@ class SampleBooksSeeder extends Seeder
 {
     public function run(): void
     {
-        $admin = User::where('email', 'admin@example.com')->first();
+        $admin = User::where('email', 'admin@gmail.com')->first();
 
         if (!$admin) {
             return;
