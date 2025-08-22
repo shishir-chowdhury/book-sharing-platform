@@ -26,7 +26,7 @@ class AuthController extends Controller
         $user->password  = $data['password'];
         $user->latitude  = $data['latitude'];
         $user->longitude = $data['longitude'];
-        
+
         $user->save();
 
         DB::statement(
