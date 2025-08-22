@@ -11,13 +11,18 @@ class User extends Authenticatable implements JWTSubject
 {
     use Notifiable;
 
-    public mixed $is_admin;
     protected $fillable = [
         'name', 'email', 'password',
         'latitude', 'longitude', 'location', 'is_admin'
     ];
 
     protected $hidden = ['password', 'remember_token'];
+
+    protected $casts = [
+        'is_admin' => 'boolean',
+        'latitude' => 'double',
+        'longitude' => 'double',
+    ];
 
     public function setPasswordAttribute($val)
     {
@@ -29,7 +34,7 @@ class User extends Authenticatable implements JWTSubject
         return $this->hasMany(Book::class);
     }
 
-    // JWT
     public function getJWTIdentifier() { return $this->getKey(); }
+
     public function getJWTCustomClaims() { return []; }
 }
