@@ -11,6 +11,7 @@ class User extends Authenticatable implements JWTSubject
 {
     use Notifiable;
 
+    public mixed $is_admin;
     protected $fillable = [
         'name', 'email', 'password',
         'latitude', 'longitude', 'location', 'is_admin'
