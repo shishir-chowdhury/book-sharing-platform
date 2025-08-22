@@ -21,5 +21,5 @@ Route::group([], function () {
 Route::prefix('admin')->middleware(['is_admin'])->group(function () {
     Route::get('users', [AdminController::class, 'users']);
     Route::get('books', [AdminController::class, 'books']);
-    Route::delete('books/{id}', [AdminController::class, 'deleteBook']);
+    Route::delete('delete-books/{id}', [AdminController::class, 'deleteBook']);
 });

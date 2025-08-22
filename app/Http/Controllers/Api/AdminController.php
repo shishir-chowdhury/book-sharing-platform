@@ -39,15 +39,25 @@ class AdminController extends Controller
         } catch (\Tymon\JWTAuth\Exceptions\JWTException $e) {
             return response()->json(['message' => 'Token not provided'], 401);
         }
-
-        if (! $user->is_admin) {
-            return response()->json(['message' => 'Unauthorized. Only admins can delete books.'], 403);
+        
+        if (!($user->is_admin ?? false)) {
+            return response()->json([
+                'message' => 'Unauthorized. Only admins can delete books.'
+            ], 403);
         }
 
-        $book = Book::findOrFail($id);
+        $book = Book::find($id);
+
+        if (!$book) {
+            return response()->json([
+                'message' => 'Book not found'
+            ], 404);
+        }
+
         $book->delete();
 
-        return response()->json(['message' => 'Book deleted successfully']);
+        return response()->json([
+            'message' => 'Book deleted successfully'
+        ], 200);
     }
-
 }
